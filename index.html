@@ -19,7 +19,8 @@
         
         <input type="file" name="inputfile" id="inputfile" />
         <p id="error" class="text-danger"></p>
-
+        <p id="loaded_num" class="text-info"></p>
+        
         <!-- Form with 3 checkboxes, number field -->
         <div class="form-group" id="form">
             <label for="num">Sample Size:</label>
@@ -43,8 +44,9 @@
                     <input type="checkbox" name="2025-year" id="2025-year" checked>
                 </div>
             </div>
-
+            
             <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+            <p id="error_submit" class="text-danger"></p>
         </div>
         <pre style="padding-top: 8px;" id="output"></pre>
     </div>

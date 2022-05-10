@@ -21,10 +21,12 @@ document.getElementById('inputfile')
 
             if (count < 100) {
                 document.getElementById('error').textContent="Invalid email file. Please select another file";
+                document.getElementById('loaded_num').textContent="";
                 $('#form').hide()
                 $('#output').hide()
             } else {
                 document.getElementById('error').textContent="";
+                document.getElementById('loaded_num').textContent="Loaded " + count + " emails";
                 // make form-group visible
                 $('#form').show()
                 $('#output').show()
@@ -84,12 +86,28 @@ document.getElementById('submit').addEventListener('click', function() {
         }
     }
     
+    if (size > emails_touch.length) {
+        alert("Invalid size. Please choose a size that is less than " + emails_touch.length);
+        return
+    }
 
     // pick a random set of emails with size size and display them
     var output = []
     for (var i = 0; i < size; i++) {
         var random = Math.floor(Math.random() * emails_touch.length)
-        output.push(emails_touch[random])
+        e = emails_touch[random]
+        // check if e is in output
+        var isIn = false
+        for (var j = 0; j < output.length; j++) {
+            if (e == output[j]) {
+                isIn = true
+            }
+        }
+        if (!isIn) {
+            output.push(e)
+        } else {
+            i--
+        }
     }
     console.log(output)
     document.getElementById('output').innerHTML = output.join('\n')
